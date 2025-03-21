@@ -1,0 +1,22 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+h1 {
+    color: #ff6600;
+}
+form {
+    max-width: 400px;
+    margin: auto;
+}
+input, select, button {
+    display: block;
+    margin: 10px auto;
+    padding: 8px;
+}
+button {
+    background: #ff6600;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
