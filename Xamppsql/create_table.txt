@@ -73,7 +73,7 @@ VALUES
     ('Misty', 'Cachorro', 4, 'Fêmea', 'Médio', TRUE, TRUE, FALSE, 'Vitória', 'imagens-27.jpg'),
     ('Shadow', 'Gato', 3, 'Macho', 'Médio', TRUE, TRUE, TRUE, 'Belém', 'imagens-28.jpg'),
     ('Max', 'Cachorro', 3, 'Macho', 'Pequeno', FALSE, TRUE, TRUE, 'Curitiba', 'imagens-29.jpg'),
-    ('Luna', 'Cachorro', 0.3, 'Fêmea', 'Pequeno', TRUE, FALSE, TRUE, 'Porto Alegre', 'imagens-30.jpg'),
+    ('Sofia', 'Cachorro', 1, 'Fêmea', 'Pequeno', TRUE, FALSE, TRUE, 'Porto Alegre', 'imagens-30.jpg'),
     ('Roxy', 'Camaleão', 3, 'Macho', 'Grande', TRUE, TRUE, TRUE, 'São Paulo', 'imagens-31.jpg'),
     ('Lunah', 'Calopsita', 2, 'Fêmea', 'Pequeno', TRUE, TRUE, FALSE, 'Rio de Janeiro', 'imagens-32.jpg'),
     ('Blue', 'Arara', 1, 'Macho', 'Médio', FALSE, TRUE, TRUE, 'Curitiba', 'imagens-33.jpg'),
