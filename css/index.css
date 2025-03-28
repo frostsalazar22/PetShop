@@ -1,0 +1,135 @@
+/* Ajuste do Header - Mantendo estilo do perfil */
+header {
+    width: 100%;
+    background: #2c3e50;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+}
+
+header .logo h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+    position: relative;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 8px 15px;
+    display: block;
+}
+
+nav ul li ul {
+    display: none;
+    position: absolute;
+    background: #34495e;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    min-width: 150px;
+    top: 100%;
+    z-index: 1000; /* Garante que fique na frente */
+}
+
+nav ul li:hover ul {
+    display: block;
+}
+
+nav ul li ul li {
+    display: block;
+}
+
+nav ul li ul li a {
+    padding: 10px;
+    display: block;
+}
+
+
+h1 {
+    text-align: center;
+    margin-top: 20px; /* Ajusta o espaço superior */
+    font-size: 28px;
+}
+
+
+
+/* Fundo geral da página */
+body {
+    background-color: #D3D3D3; /* Cinza claro para não escurecer demais */
+    font-family: Arial, sans-serif;
+}
+
+/* Lista de animais */
+.animal-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Card de animais */
+.animal-card {
+    background-color: #c49f27; /* Marrom */
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    position: relative;
+}
+
+.animal-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Botão de ver ficha */
+.btn-ficha {
+    background: white;
+    color: black;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: auto; /* Mantém o botão fixado na parte inferior */
+    width: 90%;
+    text-align: center;
+    border: 2px solid black;
+    transition: all 0.3s ease;
+}
+
+.btn-ficha:hover {
+    background: #f1c40f;
+    font-weight: bold;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .animal-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .animal-card {
+        width: 90%;
+    }
+}

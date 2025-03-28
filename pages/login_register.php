@@ -32,14 +32,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login / Cadastro</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="../css/login.css">
+    </head>
 <body>
-    <header>
-        <h1>Login / Cadastro</h1>
-    </header>
+
+
+
+
+
+
+
+
     <div class="container">
-        <div>
+        <div class="login">
             <h2>Login</h2>
             <form method="POST">
                 <input type="email" name="email" placeholder="E-mail" required>
@@ -47,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <button type="submit" name="login">Entrar</button>
             </form>
         </div>
-        <div>
+        <div class="register">
             <h2>Cadastro</h2>
             <form method="POST">
                 <input type="text" name="nome" placeholder="Nome" required>

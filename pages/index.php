@@ -18,7 +18,7 @@ $animais = $query->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adoção de Animais</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/index.css">
     <script>
     function filtrarAnimais(tipo) {
         let cards = document.querySelectorAll('.animal-card');
@@ -86,7 +86,7 @@ $animais = $query->fetchAll(PDO::FETCH_ASSOC);
 
                         <h2><?php echo htmlspecialchars($animal['nome']); ?></h2>
                         <p>Sexo: <?php echo htmlspecialchars($animal['sexo']); ?></p>
-                        <a href="pet_info.php?id=<?php echo $animal['id']; ?>" class="btn">Ver Ficha de Registro</a>
+                        <a href="pet_info.php?id=<?php echo $animal['id']; ?>" class="btn btn-ficha">Ver Ficha de Registro</a>
                     </div>
                 <?php endforeach; ?>
             </div>
