@@ -31,7 +31,7 @@ if (!$pet) {
         <h1>Informações do Pet</h1>
     </header>
     <div class="container">
-        <img src="img/<?php echo htmlspecialchars($pet['imagem']); ?>" alt="<?php echo htmlspecialchars($pet['nome']); ?>" width="300">
+        <img src="../img/<?php echo htmlspecialchars($pet['imagem']); ?>" alt="<?php echo htmlspecialchars($pet['nome']); ?>" width="300">
         <h2><?php echo htmlspecialchars($pet['nome']); ?></h2>
         <p>Espécie: <?php echo htmlspecialchars($pet['especie']); ?></p>
         <p>Idade: <?php echo htmlspecialchars($pet['idade']); ?> anos</p>
