@@ -1,0 +1,81 @@
+CREATE DATABASE IF NOT EXISTS pet_adoption;
+USE pet_adoption;
+
+CREATE TABLE Usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    telefone VARCHAR(15),
+    cidade VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE PetAdocao (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    especie VARCHAR(50) NOT NULL,
+    idade INT NOT NULL,
+    sexo ENUM('Macho', 'Fêmea') NOT NULL,
+    porte ENUM('Pequeno', 'Médio', 'Grande') NOT NULL,
+    castrado BOOLEAN DEFAULT FALSE,
+    vacinado BOOLEAN DEFAULT FALSE,
+    vermifugado BOOLEAN DEFAULT FALSE,
+    cidade VARCHAR(100) NOT NULL,
+    imagem VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE PetDono (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    especie VARCHAR(50) NOT NULL,
+    idade INT NOT NULL,
+    sexo ENUM('Macho', 'Fêmea') NOT NULL,
+    porte ENUM('Pequeno', 'Médio', 'Grande') NOT NULL,
+    castrado BOOLEAN DEFAULT FALSE,
+    vacinado BOOLEAN DEFAULT FALSE,
+    vermifugado BOOLEAN DEFAULT FALSE,
+    cidade VARCHAR(100) NOT NULL,
+    imagem VARCHAR(255) NOT NULL,
+    dono_id INT NOT NULL,
+    FOREIGN KEY (dono_id) REFERENCES Usuario(id)
+);
+
+-- Inserir registros iniciais na tabela PetAdocao
+INSERT INTO PetAdocao (nome, especie, idade, sexo, porte, castrado, vacinado, vermifugado, cidade, imagem)
+VALUES 
+    ('Rex', 'Cachorro', 3, 'Macho', 'Grande', TRUE, TRUE, TRUE, 'São Paulo', 'rex.jpg'),
+    ('Luna', 'Gato', 2, 'Fêmea', 'Pequeno', TRUE, TRUE, FALSE, 'Rio de Janeiro', 'luna.jpg'),
+    ('Bobby', 'Cachorro', 1, 'Macho', 'Médio', FALSE, TRUE, TRUE, 'Curitiba', 'bobby.jpg'),
+    ('Mel', 'Coelho', 1, 'Fêmea', 'Pequeno', FALSE, FALSE, FALSE, 'Porto Alegre', 'mel.jpg'),
+    ('Thor', 'Cachorro', 5, 'Macho', 'Grande', TRUE, TRUE, TRUE, 'Florianópolis', 'thor.jpg'),
+    ('Mimi', 'Gato', 4, 'Fêmea', 'Pequeno', TRUE, TRUE, FALSE, 'Belo Horizonte', 'mimi.jpg'),
+    
+    -- Adicionando animais do código 2
+    ('Bella', 'Cachorro', 1, 'Fêmea', 'Médio', TRUE, TRUE, TRUE, 'Rio de Janeiro', 'imagens/imagem-2.jpg'),
+    ('Max', 'Cachorro', 3, 'Macho', 'Pequeno', FALSE, TRUE, TRUE, 'Curitiba', 'imagens/imagem-3.jpg'),
+    ('Luna', 'Cachorro', 0.3, 'Fêmea', 'Pequeno', TRUE, FALSE, TRUE, 'Porto Alegre', 'imagens/imagem-4.jpg'),
+    ('Mel', 'Cachorro', 2, 'Fêmea', 'Médio', FALSE, TRUE, TRUE, 'Salvador', 'imagens/imagem-6.jpg'),
+    ('Toby', 'Cachorro', 1, 'Macho', 'Pequeno', TRUE, TRUE, TRUE, 'Florianópolis', 'imagens/imagem-7.jpg'),
+    ('Nina', 'Cachorro', 3, 'Fêmea', 'Grande', TRUE, TRUE, FALSE, 'Goiânia', 'imagens/imagem-8.jpg'),
+    ('Bob', 'Cachorro', 6, 'Macho', 'Médio', FALSE, TRUE, TRUE, 'Recife', 'imagens/imagem-9.jpg'),
+    ('Maya', 'Cachorro', 0.2, 'Fêmea', 'Pequeno', TRUE, TRUE, TRUE, 'Manaus', 'imagens/imagem-10.jpg'),
+    ('Simba', 'Cachorro', 4, 'Macho', 'Grande', TRUE, FALSE, TRUE, 'Brasília', 'imagens/imagem-11.jpg'),
+    ('Pandora', 'Cachorro', 1, 'Fêmea', 'Médio', TRUE, TRUE, FALSE, 'São Luís', 'imagens/imagem-12.jpg'),
+    ('Bobby', 'Cachorro', 5, 'Macho', 'Médio', FALSE, TRUE, TRUE, 'Fortaleza', 'imagens/imagem-13.jpg'),
+    ('Sasha', 'Cachorro', 3, 'Fêmea', 'Grande', TRUE, TRUE, TRUE, 'Vitória', 'imagens/imagem-14.jpg'),
+    ('Apolo', 'Cachorro', 2, 'Macho', 'Pequeno', TRUE, TRUE, TRUE, 'Belém', 'imagens/imagem-15.jpg'),
+    
+    -- Gatos
+    ('Garfield', 'Gato', 3, 'Macho', 'Médio', TRUE, TRUE, TRUE, 'Rio de Janeiro', 'imagens/imagem-17.jpg'),
+    ('Tom', 'Gato', 2, 'Macho', 'Pequeno', FALSE, TRUE, TRUE, 'Curitiba', 'imagens/imagem-18.jpg'),
+    ('Salem', 'Gato', 4, 'Macho', 'Médio', TRUE, TRUE, FALSE, 'Porto Alegre', 'imagens/imagem-19.jpg'),
+    ('Felix', 'Gato', 6, 'Macho', 'Médio', FALSE, TRUE, TRUE, 'Salvador', 'imagens/imagem-21.jpg'),
+    ('Bolinha', 'Gato', 2, 'Fêmea', 'Pequeno', TRUE, FALSE, TRUE, 'Florianópolis', 'imagens/imagem-22.jpg'),
+    ('Chico', 'Gato', 5, 'Macho', 'Médio', TRUE, TRUE, TRUE, 'Goiânia', 'imagens/imagem-23.jpg'),
+    ('Nina', 'Gato', 4, 'Fêmea', 'Médio', TRUE, TRUE, FALSE, 'Recife', 'imagens/imagem-24.jpg'),
+    ('Ziggy', 'Gato', 1, 'Macho', 'Pequeno', FALSE, TRUE, TRUE, 'Manaus', 'imagens/imagem-25.jpg'),
+    ('Oliver', 'Gato', 3, 'Macho', 'Médio', TRUE, TRUE, TRUE, 'Brasília', 'imagens/imagem-26.jpg'),
+    ('Jade', 'Gato', 2, 'Fêmea', 'Pequeno', TRUE, FALSE, TRUE, 'São Luís', 'imagens/imagem-27.jpg'),
+    ('Thor', 'Gato', 5, 'Macho', 'Médio', TRUE, TRUE, TRUE, 'Fortaleza', 'imagens/imagem-28.jpg'),
+    ('Misty', 'Gato', 4, 'Fêmea', 'Médio', TRUE, TRUE, FALSE, 'Vitória', 'imagens/imagem-29.jpg'),
+    ('Shadow', 'Gato', 3, 'Macho', 'Médio', TRUE, TRUE, TRUE, 'Belém', 'imagens/imagem-30.jpg');
