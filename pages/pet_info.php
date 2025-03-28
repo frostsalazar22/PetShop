@@ -24,7 +24,7 @@ if (!$pet) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Info do Pet</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">  <!-- Corrigi o caminho do CSS -->
 </head>
 <body>
     <header>
@@ -43,13 +43,13 @@ if (!$pet) {
         <p>Cidade: <?php echo htmlspecialchars($pet['cidade']); ?></p>
 
         <?php if (isset($_SESSION['usuario_id'])): ?>
-            <form action="./php/adopt_pet.php" method="POST">
-                <input type="hidden" name="pet_id" value="<?php echo $pet['id']; ?>">
+            <form action="../php/adopt_pet.php" method="POST">  <!-- Ajustei o caminho -->
+                <input type="hidden" name="pet_id" value="<?php echo htmlspecialchars($pet['id']); ?>">
                 <button type="submit">Adotar</button>
             </form>
         <?php else: ?>
             <p><strong>Faça login para adotar este pet.</strong></p>
-            <a href="./pages/login_register.php"><button>Login</button></a>
+            <a href="login_register.php"><button>Login</button></a> <!-- Corrigi o caminho do login -->
         <?php endif; ?>
     </div>
 </body>

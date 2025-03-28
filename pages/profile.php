@@ -9,10 +9,15 @@ if (!isset($_SESSION['usuario_id'])) {
 
 $usuarioId = $_SESSION['usuario_id'];
 
+
 // Buscar informações do usuário
 $stmtUser = $pdo->prepare("SELECT nome, email, telefone, cidade FROM Usuario WHERE id = ?");
 $stmtUser->execute([$usuarioId]);
 $usuario = $stmtUser->fetch(PDO::FETCH_ASSOC);
+
+if (!$usuario) {
+    die("Erro: Usuário não encontrado no banco de dados.");
+}
 
 // Buscar os pets adotados pelo usuário
 $stmtPets = $pdo->prepare("SELECT * FROM PetDono WHERE dono_id = ?");
@@ -114,13 +119,7 @@ $pets = $stmtPets->fetchAll(PDO::FETCH_ASSOC);
     </div>
     <nav>
         <ul>
-            <li><a href="index.php">Animais</a>
-                <ul>
-                    <li><a href="">Cães para adoção</a></li>
-                    <li><a href="">Gatos para adoção</a></li>
-                    <li><a href="">Exóticos para adoção</a></li>
-                </ul>
-            </li>
+            <li><a href="index.php">Animais</a></li>
             <li><a href="#">Minha Conta</a>
                 <ul>
                     <li><a href="profile.php">Meu Perfil</a></li>
@@ -133,6 +132,14 @@ $pets = $stmtPets->fetchAll(PDO::FETCH_ASSOC);
 </header>
 
 <div class="container">
+    <?php if (isset($_GET['sucesso'])): ?>
+        <p style="color: green; text-align: center;">Adoção realizada com sucesso!</p>
+    <?php endif; ?>
+
+    <?php if (isset($_GET['erro'])): ?>
+        <p style="color: red; text-align: center;"><?php echo htmlspecialchars($_GET['erro']); ?></p>
+    <?php endif; ?>
+
     <h2>Perfil do Usuário</h2>
 
     <table class="user-table">
