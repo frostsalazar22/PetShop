@@ -80,4 +80,3 @@ VALUES
     ('Mel', 'Coelho', 1, 'Fêmea', 'Pequeno', FALSE, FALSE, FALSE, 'Porto Alegre', 'imagens-34.jpg'),
     ('Jack', 'Furão', 5, 'Macho', 'Grande', TRUE, TRUE, TRUE, 'Florianópolis', 'imagens-35.jpg'),
     ('Sofia', 'Falcão', 4, 'Fêmea', 'Pequeno', TRUE, TRUE, FALSE, 'Belo Horizonte', 'imagens-36.jpg');
-    

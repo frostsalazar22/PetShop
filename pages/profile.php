@@ -7,21 +7,25 @@ if (!isset($_SESSION['usuario_id'])) {
     exit();
 }
 
-$usuarioId = $_SESSION['usuario_id'];
+// Regenera o ID da sessão para maior segurança
+session_regenerate_id(true);
 
+$usuarioId = $_SESSION['usuario_id'];
 
 // Buscar informações do usuário
 $stmtUser = $pdo->prepare("SELECT nome, email, telefone, cidade FROM Usuario WHERE id = ?");
-$stmtUser->execute([$usuarioId]);
+$stmtUser->bindParam(1, $usuarioId, PDO::PARAM_INT);
+$stmtUser->execute();
 $usuario = $stmtUser->fetch(PDO::FETCH_ASSOC);
 
 if (!$usuario) {
-    die("Erro: Usuário não encontrado no banco de dados.");
+    die("Erro: Usuário não encontrado.");
 }
 
 // Buscar os pets adotados pelo usuário
 $stmtPets = $pdo->prepare("SELECT * FROM PetDono WHERE dono_id = ?");
-$stmtPets->execute([$usuarioId]);
+$stmtPets->bindParam(1, $usuarioId, PDO::PARAM_INT);
+$stmtPets->execute();
 $pets = $stmtPets->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
@@ -46,7 +50,6 @@ $pets = $stmtPets->fetchAll(PDO::FETCH_ASSOC);
                 <ul>
                     <li><a href="profile.php">Meu Perfil</a></li>
                     <li><a href="../php/logout.php">Sair</a></li>
-
                 </ul>
             </li>
         </ul>
@@ -65,29 +68,26 @@ $pets = $stmtPets->fetchAll(PDO::FETCH_ASSOC);
     <h2>Perfil do Usuário</h2>
 
     <table class="user-table">
-        <tr><td>Nome</td><td><?php echo htmlspecialchars($usuario['nome']); ?></td></tr>
-        <tr><td>E-mail</td><td><?php echo htmlspecialchars($usuario['email']); ?></td></tr>
-        <tr><td>Telefone</td><td><?php echo htmlspecialchars($usuario['telefone']); ?></td></tr>
-        <tr><td>Cidade</td><td><?php echo htmlspecialchars($usuario['cidade']); ?></td></tr>
+        <tr><td>Nome</td><td><?= htmlspecialchars($usuario['nome'] ?? 'Não informado'); ?></td></tr>
     </table>
 
     <h2>Meus Pets Adotados</h2>
-        <div class="pets-container">
-            <?php if (count($pets) > 0): ?>
-                <?php foreach ($pets as $pet): ?>
-                    <div class="card">
-                        <img src="../img/<?php echo htmlspecialchars($pet['imagem']); ?>" alt="<?php echo htmlspecialchars($pet['nome']); ?>">
-                        <h3><?php echo htmlspecialchars($pet['nome']); ?></h3>
-                        <p><strong>Gênero:</strong> <?php echo htmlspecialchars($pet['sexo']); ?></p>
-                        <p><strong>Espécie:</strong> <?php echo htmlspecialchars($pet['especie']); ?></p>
-                        <p><strong>Idade:</strong> <?php echo htmlspecialchars($pet['idade']); ?> anos</p>
-                        <p><strong>Vacinado:</strong> <?php echo $pet['vacinado'] ? 'Sim' : 'Não'; ?></p>
-                    </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <p>Você ainda não adotou nenhum pet.</p>
-            <?php endif; ?>
-        </div>
+    <div class="pets-container">
+        <?php if (!empty($pets)): ?>
+            <?php foreach ($pets as $pet): ?>
+                <div class="card">
+                    <img src="../img/<?= htmlspecialchars($pet['imagem'] ?? 'default.png'); ?>" alt="<?= htmlspecialchars($pet['nome'] ?? 'Pet'); ?>">
+                    <h3><?= htmlspecialchars($pet['nome'] ?? 'Desconhecido'); ?></h3>
+                    <p><strong>Gênero:</strong> <?= htmlspecialchars($pet['sexo'] ?? 'Não informado'); ?></p>
+                    <p><strong>Espécie:</strong> <?= htmlspecialchars($pet['especie'] ?? 'Não informado'); ?></p>
+                    <p><strong>Idade:</strong> <?= htmlspecialchars($pet['idade'] ?? '0'); ?> anos</p>
+                    <p><strong>Vacinado:</strong> <?= isset($pet['vacinado']) && $pet['vacinado'] ? 'Sim' : 'Não'; ?></p>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>Você ainda não adotou nenhum pet.</p>
+        <?php endif; ?>
+    </div>
 </div>
 
 </body>
